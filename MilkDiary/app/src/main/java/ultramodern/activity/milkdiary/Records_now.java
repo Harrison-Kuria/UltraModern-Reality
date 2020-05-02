@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
@@ -22,10 +26,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Records_now extends AppCompatActivity implements View.OnClickListener {
     public static String message;
     private Button button;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +74,22 @@ public class Records_now extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (v == button){
-            new Thread(new SendMessage()).start();
+            //new Thread(new SendMessage()).start();
+            addData();
         }
+    }
+    private void addData(){
+        name=getIntent().getStringExtra("username");
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = db.collection(name).document(name +"Database");
+        documentReference.update("Record:",message).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(),"Data saved successfully",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

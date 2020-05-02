@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".username_request"></activity>
+        <activity android:name=".setting_splash" />
         <activity android:name=".WelcomeSplash" />
         <activity android:name=".Welcome" />
         <activity android:name=".Records_now" />
@@ -20,7 +22,7 @@
         <activity android:name=".settings" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PhoneNumberAuthentication" />
-        <activity android:name=".PhoneNumber"/>
+        <activity android:name=".PhoneNumber" />
         <activity android:name=".Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
