@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "791714490622",
+    "firebase_url": "https://milkdiary-7e109.firebaseio.com",
+    "project_id": "milkdiary-7e109",
+    "storage_bucket": "milkdiary-7e109.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791714490622:android:33f57b2e5347394b281daf",
+        "android_client_info": {
+          "package_name": "ultramodern.activity.milkdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791714490622-vgmic5fk9fefhcpghrr7il00quqli4un.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ultramodern.activity.milkdiary",
+            "certificate_hash": "15efd29e7331d8dd6cd1668c285077736fd03979"
+          }
+        },
+        {
+          "client_id": "791714490622-j8gqihj64o8ams1u4pmda3abcvskdfv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4TQZ7LvEVTwa3bB7dE8hlvniNN0GAwlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791714490622-j8gqihj64o8ams1u4pmda3abcvskdfv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
