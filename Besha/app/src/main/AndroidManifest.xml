@@ -9,7 +9,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".FinishNewGroup"></activity>
+        <activity android:name=".RecievePayment_QrCode"></activity>
+        <activity android:name=".RecievePayment_Amount" />
+        <activity android:name=".Pay_AddBusiness_Amount" />
+        <activity android:name=".Pay_AddBusiness_Confirm" />
+        <activity android:name=".Pay_AddBusiness_EnterPin" />
+        <activity android:name=".Pay_AddBusinessNumber" />
+        <activity android:name=".Pay_Scancode_Confirm">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Pay_Scancode_Enter_pin" />
+        <activity android:name=".Pay_Scan_Code" />
+        <activity android:name=".Pay_Choose" />
+        <activity android:name=".BuyAirtime_Amount2" />
+        <activity android:name=".BuyAirtime_SelfConfirm" />
+        <activity android:name=".BuyAirtime_ConfirmTransaction" />
+        <activity android:name=".BuyAirtime_select_contacts" />
+        <activity android:name=".BuyAirtime_EnterPin" />
+        <activity android:name=".BuyAirtime_Amount" />
+        <activity android:name=".BuyAirtime" />
+        <activity android:name=".BuyAirtimeAction" />
+        <activity android:name=".Send_Money_Confirm" />
+        <activity android:name=".Send_Money_Enter_Pin" />
+        <activity android:name=".Send_Money_Set_Amount" />
+        <activity android:name=".Send_Money" />
+        <activity android:name=".Group_borrow_icon_activity" />
+        <activity android:name=".Group_borrow_button_activity" />
+        <activity android:name=".Group_depo_icon_activity" />
+        <activity android:name=".Group_deposit_button_activity" />
+        <activity android:name=".Group_pay_icon_activity" />
+        <activity android:name=".Group_pay" />
+        <activity android:name=".FinishNewGroup" />
         <activity android:name=".Complete_new_Group" />
         <activity android:name=".NewGroup" />
         <activity android:name=".Groups" />
@@ -21,13 +55,7 @@
         <activity android:name=".TopUpStep1" />
         <activity android:name=".SingleCard" />
         <activity android:name=".Add_Card" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
