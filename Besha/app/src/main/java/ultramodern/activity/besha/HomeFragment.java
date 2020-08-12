@@ -2,19 +2,40 @@ package ultramodern.activity.besha;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.Context;
+import com.google.firebase.storage.StorageReference;
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
+    StorageReference storageReference;
 
     Button fabhome, recievepaymentbtn, buyairtimebtn, paybtn, sendmoneybtn, buyairtimeicon, recievepaymenticon, payicon, sendmoneyicon;
+    CardView popup;
+    RecyclerView cardlist;
     public HomeFragment() {
 
     }
@@ -30,6 +51,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         recievepaymenticon = view.findViewById(R.id.iconrecievepayment);
         payicon = view.findViewById(R.id.iconpay);
         sendmoneyicon = view.findViewById(R.id.sendmoneyicon);
+        cardlist = view.findViewById(R.id.cardlist);
+        popup = view.findViewById(R.id.imagepopup);
+        cardlist.setLayoutManager(new LinearLayoutManager(getActivity()));
+        popupContent();
 
         //setting button listeners
         fabhome.setOnClickListener(this);
@@ -85,6 +110,44 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         if (view==buyairtimebtn){
             Intent intent = new Intent(getActivity(),BuyAirtimeAction.class);
             startActivity(intent);
+        }
+    }
+
+    private void popupContent(){
+        DatabaseReference imageReference = FirebaseDatabase.getInstance().getReference("CardImages");
+        FirebaseRecyclerOptions<ImageRetrieval> options = new FirebaseRecyclerOptions.Builder<ImageRetrieval>().setQuery(imageReference, new SnapshotParser<ImageRetrieval>() {
+            @NonNull
+            @Override
+            public ImageRetrieval parseSnapshot(@NonNull DataSnapshot snapshot) {
+                return new ImageRetrieval(snapshot.getValue().toString());
+            }
+        }).build();
+        FirebaseRecyclerAdapter firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ImageRetrieval, ViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull ImageRetrieval model) {
+                //Glide.with(requireActivity()).load(model.getImageURL()).into(holder.cardImage);
+                Picasso.with(requireActivity()).setLoggingEnabled(true);
+                Picasso.with(requireActivity()).load(model.getImageURL()).into(holder.cardImage);
+
+            }
+
+            @NonNull
+            @Override
+            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(getActivity()).inflate(R.layout.popup_layout,parent,false);
+
+                return new ViewHolder(view);
+            }
+        };
+        cardlist.setAdapter(firebaseRecyclerAdapter);
+        Log.d("TRACK","inflate success");
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView cardImage;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cardImage = itemView.findViewById(R.id.cardImage);
         }
     }
 }

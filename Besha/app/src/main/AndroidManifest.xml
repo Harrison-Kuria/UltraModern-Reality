@@ -2,6 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ultramodern.activity.besha">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.front" />
+    <uses-feature android:name="android.hardware.camera.front.autofocus" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera.flash" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,19 +22,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".RecievePayment_QrCode"></activity>
-        <activity android:name=".RecievePayment_Amount" />
-        <activity android:name=".Pay_AddBusiness_Amount" />
-        <activity android:name=".Pay_AddBusiness_Confirm" />
-        <activity android:name=".Pay_AddBusiness_EnterPin" />
-        <activity android:name=".Pay_AddBusinessNumber" />
-        <activity android:name=".Pay_Scancode_Confirm">
+        <activity android:name=".SingleCard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SingleBank"/>
+        <activity android:name=".PlannedPayments" />
+        <activity android:name=".NewGoal" />
+        <activity android:name=".EditProfile" />
+        <activity android:name=".RecievePayment_QrCode" />
+        <activity android:name=".RecievePayment_Amount" />
+        <activity android:name=".Pay_AddBusiness_Amount" />
+        <activity android:name=".Pay_AddBusiness_Confirm" />
+        <activity android:name=".Pay_AddBusiness_EnterPin" />
+        <activity android:name=".Pay_AddBusinessNumber" />
+        <activity android:name=".Pay_Scancode_Confirm" />
         <activity android:name=".Pay_Scancode_Enter_pin" />
         <activity android:name=".Pay_Scan_Code" />
         <activity android:name=".Pay_Choose" />
@@ -53,7 +71,6 @@
         <activity android:name=".TopUpStep3" />
         <activity android:name=".TopUpStep2" />
         <activity android:name=".TopUpStep1" />
-        <activity android:name=".SingleCard" />
         <activity android:name=".Add_Card" />
         <activity android:name=".MainActivity" />
     </application>
