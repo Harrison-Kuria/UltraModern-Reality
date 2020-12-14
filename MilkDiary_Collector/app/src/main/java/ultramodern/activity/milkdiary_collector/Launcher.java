@@ -21,6 +21,13 @@ public class Launcher extends AppCompatActivity implements View.OnClickListener 
             finish();
         }
     }
+    public void PhoneNumberFarmer(View paramView){
+        Intent intent = new Intent(Launcher.this, PhoneNumberFarmer.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
 
     protected void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
