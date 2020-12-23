@@ -1,52 +1,42 @@
 package ultramodern.activity.milkdiary_collector;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.content.Context;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
+@SuppressWarnings("ALL")
+public class NetworkInterceptor extends AppCompatActivity {
 
-import com.google.firebase.auth.FirebaseAuth;
-
-public class Logout extends AppCompatActivity implements View.OnClickListener {
-    private FirebaseAuth auth;
-
-    private Button logoutbutton;
+    private RelativeLayout relativeLayout1;
     private IntentFilter intentFilter;
 
-    public void onClick(View paramView) {
-        if (paramView == this.logoutbutton) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(getApplicationContext(), PhoneNumber.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-
-        }
+    public NetworkInterceptor(RelativeLayout relativeLayout1) {
+        this.relativeLayout1 = relativeLayout1;
     }
 
-    protected void onCreate(Bundle paramBundle) {
-        super.onCreate(paramBundle);
-        setContentView(R.layout.activity_logout);
-        Button button = (Button)findViewById(R.id.button4);
-        this.logoutbutton = button;
-        button.setOnClickListener(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_network_interceptor);
 
+        TextView noInternet = findViewById(R.id.noInternet);
         intentFilter = new IntentFilter();
         intentFilter.addAction("Check Internet");
+
         Intent serviceIntent = new Intent(this,MyService.class);
         startService(serviceIntent);
 
-        //noInternet.setVisibility(View.GONE);
+        noInternet.setVisibility(View.GONE);
         if (isOnline(getApplicationContext())){
             set_Visibility_ON();
         }
@@ -54,10 +44,10 @@ public class Logout extends AppCompatActivity implements View.OnClickListener {
             set_Visibility_OFF();
         }
     }
+    @Override
     protected void onStart() {
         super.onStart();
         registerReceiver(myReceiver,intentFilter);
-//        this.adapter3.startListening();
     }
 
     @Override
@@ -71,6 +61,7 @@ public class Logout extends AppCompatActivity implements View.OnClickListener {
         super.onResume();
         registerReceiver(myReceiver,intentFilter);
     }
+
     public BroadcastReceiver myReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -96,26 +87,25 @@ public class Logout extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void set_Visibility_ON(){
-        TextView noInternet = findViewById(R.id.noInternet1);
-        Button logoutbtn = findViewById(R.id.button4);
-        //RelativeLayout relativeLayout1 = findViewById(R.id.Main2ActivityLayout);
-        //RecyclerView recyclerView1 = (RecyclerView)findViewById(R.id.recycler);
-        //recyclerView1.setVisibility(View.VISIBLE);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar2);
-        toolbar.setVisibility(View.VISIBLE);
-        logoutbtn.setVisibility(View.VISIBLE);
+        TextView noInternet = findViewById(R.id.noInternet);
+        RelativeLayout relativeLayout = findViewById(R.id.NetworkInterceptorLayout);
+        relativeLayout.setVisibility(View.GONE);
         noInternet.setVisibility(View.GONE);
-        //relativeLayout1.setVisibility(View.VISIBLE);
+        relativeLayout1.setVisibility(View.VISIBLE);
+        //binding.submit.setVisibility(View.VISIBLE);
+        //binding.parent.setBackgroundColor(Color.WHITE);
+
     }
 
     public void set_Visibility_OFF(){
-        TextView noInternet = findViewById(R.id.noInternet1);
-        Button logoutbtn = findViewById(R.id.button4);
+        TextView noInternet = findViewById(R.id.noInternet);
+        RelativeLayout relativeLayout = findViewById(R.id.NetworkInterceptorLayout);
+        relativeLayout.setVisibility(View.VISIBLE);
         noInternet.setVisibility(View.VISIBLE);
-        //recyclerView1.setVisibility(View.GONE);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar2);
-        toolbar.setVisibility(View.GONE);
-        logoutbtn.setVisibility(View.GONE);
+        relativeLayout1.setVisibility(View.GONE);
+        //binding.submit.setVisibility(View.GONE);
+        //binding.parent.setBackgroundColor(Color.RED);
+
     }
 
 

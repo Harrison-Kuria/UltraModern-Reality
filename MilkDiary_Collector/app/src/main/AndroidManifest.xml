@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivityFarmer"></activity>
+        <activity android:name=".NetworkInterceptor"></activity>
+        <activity android:name=".ViewAllRecords" />
+        <activity android:name=".MainActivityFarmer" />
         <activity android:name=".WelcomeSplashFarmer" />
         <activity android:name=".UsernameRequestFarmer" />
         <activity android:name=".GettingReadyFarmer" />
@@ -28,17 +30,17 @@
         <activity android:name=".UpdateRecord" />
         <activity android:name=".Logout" />
         <activity android:name=".WelcomeSplash" />
-        <activity android:name=".UsernameRequest"/>
-        <activity android:name=".gettingready" />
-        <activity android:name=".PhoneNumberAuthentication" />
-        <activity android:name=".PhoneNumber" />
-        <activity android:name=".Launcher" >
+        <activity android:name=".UsernameRequest">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".gettingready" />
+        <activity android:name=".PhoneNumberAuthentication" />
+        <activity android:name=".PhoneNumber" />
+        <activity android:name=".Launcher" />
         <activity android:name=".MainActivity" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
@@ -47,7 +49,10 @@
             android:launchMode="singleTask"
             android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"/>
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"
             android:directBootAware="true"
@@ -70,6 +75,7 @@
             android:authorities="ultramodern.activity.milkdiary_collector.firebaseinitprovider"
             android:exported="false"
             android:initOrder="100" />
+
 
         <meta-data
             android:name="com.google.android.gms.version"

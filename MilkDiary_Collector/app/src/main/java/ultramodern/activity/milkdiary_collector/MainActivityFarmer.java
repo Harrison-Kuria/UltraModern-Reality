@@ -6,8 +6,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -16,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -42,6 +47,8 @@ public class MainActivityFarmer extends AppCompatActivity {
 
     public String sp;
 
+    private IntentFilter intentFilter;
+
     private Toolbar toolbar;
 
     @Override
@@ -64,6 +71,19 @@ public class MainActivityFarmer extends AppCompatActivity {
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
         this.arrayList = new ArrayList();
         this.recyclerView.addItemDecoration(new DividerItemDecoration(this, 1));
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("Check Internet");
+        Intent serviceIntent = new Intent(this,MyService.class);
+        startService(serviceIntent);
+
+        //noInternet.setVisibility(View.GONE);
+        if (isOnline(getApplicationContext())){
+            set_Visibility_ON();
+        }
+        else {
+            set_Visibility_OFF();
+        }
         fetch();
     }
 
@@ -104,7 +124,21 @@ public class MainActivityFarmer extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
+        registerReceiver(myReceiver,intentFilter);
         this.adapter2.startListening();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(myReceiver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(myReceiver,intentFilter);
     }
 
     protected void onStop() {
@@ -122,5 +156,48 @@ public class MainActivityFarmer extends AppCompatActivity {
 
         public void setTxtname(String param1String) { this.name.setText(param1String); }
     }
+    public BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals("Check Internet")){
+                if (intent.getStringExtra("online_status").equals("true")){
+                    set_Visibility_ON();
+                }
+                else {
+                    set_Visibility_OFF();
+                }
+            }
+        }
+    };
+    public boolean isOnline(Context c){
+        ConnectivityManager connectivityManager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo !=null && networkInfo.isConnectedOrConnecting()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void set_Visibility_ON(){
+        TextView noInternet = findViewById(R.id.noInternet1);
+        RecyclerView recyclerView1 = (RecyclerView)findViewById(R.id.recycler);
+        recyclerView1.setVisibility(View.VISIBLE);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.VISIBLE);
+        noInternet.setVisibility(View.GONE);
+        //relativeLayout1.setVisibility(View.VISIBLE);
+    }
+
+    public void set_Visibility_OFF(){
+        TextView noInternet = findViewById(R.id.noInternet1);
+        RecyclerView recyclerView1 = (RecyclerView)findViewById(R.id.recycler);
+        noInternet.setVisibility(View.VISIBLE);
+        recyclerView1.setVisibility(View.GONE);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
+    }
+
 
 }
