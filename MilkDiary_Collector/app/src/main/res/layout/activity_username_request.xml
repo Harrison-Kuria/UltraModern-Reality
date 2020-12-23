@@ -42,4 +42,13 @@
         android:text="PROCEED"
         android:layout_marginStart="70.0dip"
         android:layout_marginEnd="70.0dip" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Internet Connection"
+        android:id="@+id/noInternet1"
+        android:textSize="20dip"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
 </RelativeLayout>

@@ -30,17 +30,17 @@
         <activity android:name=".UpdateRecord" />
         <activity android:name=".Logout" />
         <activity android:name=".WelcomeSplash" />
-        <activity android:name=".UsernameRequest">
+        <activity android:name=".UsernameRequest"/>
+        <activity android:name=".gettingready" />
+        <activity android:name=".PhoneNumberAuthentication" />
+        <activity android:name=".PhoneNumber" />
+        <activity android:name=".Launcher" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".gettingready" />
-        <activity android:name=".PhoneNumberAuthentication" />
-        <activity android:name=".PhoneNumber" />
-        <activity android:name=".Launcher" />
         <activity android:name=".MainActivity" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"

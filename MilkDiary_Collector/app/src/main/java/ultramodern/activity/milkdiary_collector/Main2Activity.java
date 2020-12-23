@@ -166,6 +166,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 //        NetworkInterceptor networkInterceptor = new NetworkInterceptor(relativeLayout);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("Records");
         toolbar.setTitleTextColor(-1);
         getIntent().getStringExtra("username");

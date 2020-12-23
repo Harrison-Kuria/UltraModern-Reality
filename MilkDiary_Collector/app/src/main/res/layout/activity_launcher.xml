@@ -11,7 +11,12 @@
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/milk3" />
     <TextView android:id="@+id/textView"
-        android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="67.0dip" android:layout_marginBottom="265.0dip" android:text="Get started with our Milk Sales app, registered as a farmer." android:textAlignment="center" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/imageView" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67.0dip"
+        android:layout_marginBottom="265.0dip"
+        android:text="Get started with our Milk Sales app." android:textAlignment="center" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:gravity="center_horizontal" />
     <TextView android:id="@+id/textView2"
         android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="35.0dip" android:layout_marginBottom="211.0dip" android:text="By tapping on &quot;Get Started&quot;, you agree to the" android:textAlignment="center" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/textView" />
     <TextView android:textColor="#ff1e88e5" android:id="@+id/textView3"
